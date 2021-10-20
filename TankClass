@@ -1,0 +1,14 @@
+public class Tank {
+	public int id; //tank name
+	public int timer; //tank fill/empty time
+	public int contents; //current tank content
+	public int timeLastFilled; //time tank was last filled (minutes)
+
+	public Tank(int _id, int _timer, int _contents, int _timeLastFilled) {
+		id = _id;
+		timer = _timer;
+		contents = _contents;
+		timeLastFilled = _timeLastFilled;
+	}
+}
+
