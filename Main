@@ -1,0 +1,75 @@
+public class javaFileInduction {
+	
+	
+	public static void main(String[] args) {	
+		javaFileInduction _javaFileInduction = new javaFileInduction();
+		_javaFileInduction.Start();
+	}
+	
+	 
+	//tank init
+	Tank t1 = new Tank(1,5,0,0);
+	Tank t2 = new Tank(2,2,0,0);
+	Tank[] tanks = new Tank[2];
+	
+	int stage = 0;
+	int firstFill = 0;
+	
+	public void Start() {
+		tanks[0] = t1;
+		tanks[1] = t2;
+		Update();		
+	}
+	
+	public void Update() {
+		Algorithm(stage); 
+		
+		TankEmpty();
+		System.out.println("Stage:: "+ stage);
+		System.out.println("Tank 1: " + t1.contents);
+		System.out.println("Tank 2:  " + t2.contents);
+		
+		try {
+			Thread.sleep(1000);
+		} 
+		catch (InterruptedException e) {
+		}
+		
+		firstFill++;
+		Update();
+	}
+	
+	private void Algorithm(int s) {
+		if(s == 0) {
+			TankFill(1);
+			stage++;
+		}
+		else {
+			TankFill(2);
+			stage--;
+		}
+	}
+	
+	
+	
+	private void TankFill(int t) { 
+		if(firstFill > 2) {
+			tanks[t-1].contents = tanks[t-1].timer + 1; 
+		}else {
+			tanks[t-1].contents = tanks[t-1].timer; //+1 to make account for decay
+		}
+		
+		
+	}
+	
+	
+	private void TankEmpty() {
+		if(firstFill > 2) {
+		for(int i = 0; i < tanks.length; i++) {
+			tanks[i].contents--;
+		}
+		}
+	}
+	
+	
+}
